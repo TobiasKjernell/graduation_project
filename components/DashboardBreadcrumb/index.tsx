@@ -1,14 +1,19 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
-const DashboardBreadcrumb = ({pageParam, currentPage}:{pageParam:string, currentPage:string}) => {
+const DashboardBreadcrumb = ({ pageParam, currentPage }: { pageParam: string, currentPage: string }) => {
     return <Breadcrumb>
         <BreadcrumbList>
             <BreadcrumbItem>
-                <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
+                <BreadcrumbLink asChild>
+                    <Link href={`/dashboard`}>Dashboard</Link>
+                </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-                <BreadcrumbLink href={`/dashboard/${pageParam}`}><span className="capitalize">{pageParam}</span></BreadcrumbLink>
+                <BreadcrumbLink asChild>
+                    <Link href={`/dashboard/${pageParam}`}><span className="capitalize">{pageParam}</span></Link>
+                </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
