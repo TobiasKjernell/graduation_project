@@ -1,7 +1,7 @@
 
 
 import { projects } from "@/lib/data";
-import { Car, GanttChart, Globe, KanbanSquare, ListOrdered, Users } from "lucide-react";
+import { Gamepad2, GanttChart, Globe, KanbanSquare, ListOrdered, Map, Settings, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "../ui/sidebar";
@@ -31,7 +31,7 @@ const DashboardSidebar = () => {
                                 <SidebarMenuItem key={items.name}>
                                     <SidebarMenuButton asChild>
                                         <Link href={`${items.nameUrl}`}>
-                                            <Car /> {items.name}
+                                            <Gamepad2 /> {items.name}
                                         </Link>
                                     </SidebarMenuButton>
                                     <SidebarMenuSub>
@@ -57,15 +57,15 @@ const DashboardSidebar = () => {
                                                 <SidebarMenuSubItem>
                                                     <SidebarMenuSubButton asChild>
                                                         <Link href={`${items.settingsUrl}`}>
-                                                            <Users />
-                                                            Settings
+                                                            <Settings />
+                                                            Settings        
                                                         </Link>
                                                     </SidebarMenuSubButton>
                                                 </SidebarMenuSubItem>
                                                 <SidebarMenuSubItem>
                                                     <SidebarMenuSubButton asChild>
                                                         <Link href={`${items.levelsUrl}`}>
-                                                            <Users />
+                                                            <Map />
                                                             Levels
                                                         </Link>
                                                     </SidebarMenuSubButton>
@@ -78,7 +78,7 @@ const DashboardSidebar = () => {
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
                                                     <Link href={`${items.kanbanUrl}`}>
-                                                        <Users />
+                                                        <KanbanSquare />
                                                         Kanban
                                                     </Link>
                                                 </SidebarMenuSubButton>
@@ -86,7 +86,7 @@ const DashboardSidebar = () => {
                                             <SidebarMenuSubItem>
                                                 <SidebarMenuSubButton asChild>
                                                     <Link href={`${items.gantUrl}`}>
-                                                        <Users />
+                                                        <GanttChart />
                                                         Gant
                                                     </Link>
                                                 </SidebarMenuSubButton>
@@ -97,21 +97,21 @@ const DashboardSidebar = () => {
                             )}
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild>
-                                    <Link href={`website`}>
+                                    <Link href={`/dashboard/website`}>
                                         <Globe /> Website
                                     </Link>
                                 </SidebarMenuButton>
                                 <SidebarMenuSub>
-                                    <SidebarMenuSubItem>
+                                    <SidebarMenuSubItem>    
                                         <SidebarMenuButton asChild>
-                                            <Link href={'dashboard/website/kanban'}>
+                                            <Link href={'/dashboard/website/kanban'}>
                                                 <KanbanSquare /> Kanban
                                             </Link>
                                         </SidebarMenuButton>
                                     </SidebarMenuSubItem>
-                                    <SidebarMenuSubItem>
+                                    <SidebarMenuSubItem>            
                                         <SidebarMenuButton asChild>
-                                            <Link href={'dashboard/website/gant'}>
+                                            <Link href={'/dashboard/website/gant'}>
                                                 <GanttChart /> Gant
                                             </Link>
                                         </SidebarMenuButton>
