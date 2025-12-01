@@ -37,6 +37,47 @@ const levels: ILevels[] = [
         name: 'Goblin Fortress',
         status: true,
     },
+     {
+        name: "Hadrian's Wall",
+        status: true,
+    },
+    {
+        name: 'Emain Macha',
+        status: false,
+    },
+    {
+        name: "Odin's Gate",
+        status: true,
+    },
+    {
+        name: "Snowdonia",
+        status: false,
+    },
+    {
+        name: 'Window of the Sacrifices',
+        status: true,
+    },
+    {
+        name: 'Breakdawn Jackets',
+        status: true,
+    },
+    {
+        name: 'Fire Mountains',
+        status: true,
+    },
+    {
+        name: "Magic Forest",
+        status: false,
+    },
+    {
+        name: 'Redwings',
+        status: true,
+    }, 
+    {
+        name: 'Kobold Fortress',
+        status: true,
+    }, 
+         
 
 
 ]
@@ -47,7 +88,7 @@ const LevelsPage = async ({ params }: { params: Promise<{ project: string }> }) 
         <div>
             <DashboardBreadcrumb pageParam={project} currentPage="Levels" />
             <h2 className="text-2xl font-semibold">Levels</h2>
-            <div className="flex flex-col gap-4 mt-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                 {levels && levels.map(item => <Card key={item.name}>
                     <CardContent className="flex justify-between items-center">
                         <CardTitle>{item.name}</CardTitle>

@@ -7,6 +7,6 @@ const PlayersPage = async ({ params }: { params: Promise<{ project: string }> })
             <DashboardBreadcrumb pageParam={project} currentPage="Players" />
         </div>
     )
-}
+}   
 
 export default PlayersPage;
