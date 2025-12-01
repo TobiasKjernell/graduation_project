@@ -1,14 +1,22 @@
+import DashboardSidebar from "@/components/DashboardSidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <main className="w-full">
-            {/* Sidebar */}
-            <div className="px-4">
-            {/* Navbar */}
-                {children}
-            </div>
-        </main>
+        <div className="dark">
+
+        <SidebarProvider>
+            <main className="w-full">
+                {/* Sidebar */}
+                <DashboardSidebar />
+                <div className="px-4">
+                    {/* Navbar */}
+                    {children}
+                </div>
+            </main>
+        </SidebarProvider>
+        </div>
     )
 }
 
