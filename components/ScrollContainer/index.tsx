@@ -16,10 +16,11 @@ const ScrollContainer = () => {
                 scrub: true,
                 markers: false,
                 pin: true,
-                start: 'center center'
+                start: 'center center',
+                invalidateOnRefresh: true,
             }
-        }).to('.psp', { top: '50%', translateY: '-47.5%', rotate: '0deg', duration: 2 })
-            .to('.blog', { top: '50%', translateY: '-45%', duration: 2 })
+        }).to('.psp', { top: '50%', translateY: '-47.5%', translateX: '50%', right: '50%', rotate: '0deg', duration: 2 })
+            .to('.blog', { top: '50%', translateY: '-45%', translateX: '50%', right: '50%', duration: 2 })
     });
 
     return (
@@ -28,7 +29,7 @@ const ScrollContainer = () => {
             <div className="w-[80%] h-[800px] psp-background-dark absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[-50%] border psp-border-color rounded-2xl shadow-2xl shadow-black">
 
             </div>
-            <div className="psp w-[80%] h-[800px] psp-background-dark absolute top-[95%] right-[50%] rotate-2 translate-x-[50%] border psp-border-color rounded-2xl">
+            <div className="psp w-[80%] h-[800px] psp-background-dark absolute top-[95%] right-[50%] translate-x-[50%] rotate-2 border psp-border-color rounded-2xl">
 
             </div>
             <div className="blog w-[80%] h-[800px] psp-background-dark absolute top-[97%] right-[50%] translate-x-[50%] border psp-border-color rounded-2xl ">
