@@ -144,10 +144,18 @@
   }
 
   .scale-images {
-      &:hover > .tobbe {
-        scale: 2;
-      }
-    
+    &:hover>.tobbe {
+      scale: 2;
+    }
   }
-  .tobbe{}
+
+  .psp-text-jura {
+    font-family: var(--jura);
+  }
+
+  .psp-gsap-reset {
+    transform: none !important; 
+    right: 0% !important;   
+    top: 0 !important; 
+  }
 }
