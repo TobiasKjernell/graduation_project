@@ -116,7 +116,30 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .psp-background-light {
+    background-color: #161f32;
+  }
+
+  .psp-background-dark {
+    background-color: #0a1428;
+  }
+
+  .psp-border-color {
+    border-color: #cea86f;
+  }
+
+  .psp-linear-background {
+    background: linear-gradient(to bottom right, #161f32, #0a1428)
+  }
+
+  .psp-text-gold {
+    color: #cea86f;
   }
 }
