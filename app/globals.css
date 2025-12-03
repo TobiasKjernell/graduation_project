@@ -142,4 +142,12 @@
   .psp-text-gold {
     color: #cea86f;
   }
+
+  .scale-images {
+      &:hover > .tobbe {
+        scale: 2;
+      }
+    
+  }
+  .tobbe{}
 }

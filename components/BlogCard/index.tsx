@@ -4,7 +4,7 @@ import Link from "next/link";
 const BlogCard = () => {
     return (
         <Link href={'#'} className='flex flex-col border psp-border-color rounded-sm overflow-hidden psp-background-light hover:bg-[#0a1428]'>
-            <div className='relative  h-44' >
+            <div className=' relative h-44 mask-b-from-10% overflow-hidden'>
                 <Image src='/codeplaceholder.png' alt='test picture' fill className='object-cover' />
             </div>
             <div className='grow p-5'>
