@@ -153,6 +153,10 @@
     font-family: var(--jura);
   }
 
+   .psp-text-asi {
+    font-family: var(--asimovian);
+  }
+
   .psp-gsap-reset {
     transform: none !important; 
     right: 0% !important;   
