@@ -1,4 +1,5 @@
 'use client'
+
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
@@ -7,7 +8,7 @@ import LandingBlog from '../LandingBlog';
 import LandingHeader from '../LandingHeader';
 import LandingTeam from '../LandingTeam';
 
-const ScrollContainer = () => {
+const ScrollContainer = ({ children }: { children: React.ReactNode }) => {
     gsap.registerPlugin(ScrollTrigger)
     const triggerPoint = useRef(null);
 
@@ -38,7 +39,9 @@ const ScrollContainer = () => {
                 <LandingTeam />
             </div>
             <div className="blog h-auto w-full xl:w-[80%] xl:h-[800px] psp-background-dark xl:absolute xl:top-[97%] xl:right-[50%] xl:translate-x-[50%] border psp-border-color xl:rounded-2xl ">
-                <LandingBlog />
+                <LandingBlog>
+                            {children}
+                </LandingBlog>
             </div>
         </div>
     )
