@@ -9,7 +9,7 @@ import { Suspense } from "react";
 
 const LeaderboardPage = async ({ params }: { params: Promise<{ project: string }> }) => {
     const { project } = await params;
-
+    
     return (
         <div className="">
             <DashboardBreadcrumb pageParam={project} currentPage="Leaderboard" />

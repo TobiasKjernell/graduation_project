@@ -14,6 +14,18 @@ export const projectName = (project_id: number): string => {
   }
 }
 
+export const projectNameString = (project: string): number => {
+  switch (project) {
+    case 'slotcarracing':
+      return 1;
+    case 'numberops':
+      return 2;
+    case 'website':
+      return 3;
+    default: return 0;
+  }
+}
+
 export const imageFallback = (project_id: number): string => {
   switch (project_id) {
     case 1: return '/codeplaceholder.png';

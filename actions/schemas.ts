@@ -11,4 +11,8 @@ export const signUpSchema = z.object({
     username: z.string().min(6, 'Username needs to be a minimum of 6 characters')
 })
 
+export const levelSchema = z.object({
+    status: z.boolean()
+})
+
 
