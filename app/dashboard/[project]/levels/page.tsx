@@ -10,7 +10,7 @@ const LevelsPage = async ({ params }: { params: Promise<{ project: string }> }) 
             <DashboardBreadcrumb pageParam={project} currentPage="Levels" />
             <h2 className="text-2xl font-semibold">Levels</h2>
 
-            <Suspense fallback={<LandingSpinner />}>
+            <Suspense >
                 <LevelsGrid project={project} />        
             </Suspense>
 

@@ -1,9 +1,9 @@
 import { getPosts } from "@/lib/supabase/queries";
 import BlogCard from "../BlogCard"
-import { cacheTag } from "next/cache";
 
-export const revalidate = 1000;
-const BlogPagePosts = async () => {
+
+export const revalidate = 3600;
+const BlogPagePosts = async () => { 
    
     const { data, error } = await getPosts();
     return (

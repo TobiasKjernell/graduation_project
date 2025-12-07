@@ -1,6 +1,6 @@
 import { QueryData } from "@supabase/supabase-js";
 import { createClient } from "./client"
-import { cacheTag } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 
 //Posts
 export const getPosts = async () => {
@@ -31,8 +31,6 @@ export const getLandingPagePosts = async () => {
 
 //Levels
 export const getLevelsByProject = async (projectId: number) => {
-    'use cache'
-    cacheTag(`levels-${projectId}`);
 
     const supabase = createClient();
     return supabase.from('levels').select('*').eq('project_id', projectId).order('created_at');

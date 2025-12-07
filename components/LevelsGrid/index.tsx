@@ -1,11 +1,11 @@
 import { getLevelsByProject } from "@/lib/supabase/queries"
 import { getProjectNameByString } from "@/lib/utils";
 import LevelGridItem from "../LevelGridItem";
+import { cacheLife } from "next/cache";
 
-
-export const revalidate = 500;
 const LevelsGrid = async ({ project }: { project: string }) => {
-   
+   'use cache'
+   cacheLife('default')
     const { data, error } = await getLevelsByProject(getProjectNameByString(project))
     if (error) return <div>Something went wrong: {error.message}</div>
 

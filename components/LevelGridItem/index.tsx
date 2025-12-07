@@ -29,7 +29,7 @@ const LevelGridItem = ({ name, status, id, project_id }: { name: string, status:
                 </div>
             </CardContent>
         </Card>
-    )
+    )   
 }
 
 export default LevelGridItem;
