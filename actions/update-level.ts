@@ -1,10 +1,9 @@
 'use server'
 
-import { z } from 'zod'
-import { levelSchema } from './schemas'
-import { revalidatePath, updateTag } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
-import { getUpateTagProjectId } from '@/lib/utils';
+import { updateTag } from 'next/cache';
+import { z } from 'zod';
+import { levelSchema } from './schemas';
 
 export const UpdateLevel = async ({ id, updateInfo, project_id }: { id: number, updateInfo: z.infer<typeof levelSchema>, project_id:number }) => {
     const parsedData = levelSchema.parse(updateInfo);
