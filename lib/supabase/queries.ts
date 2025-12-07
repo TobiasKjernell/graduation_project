@@ -6,6 +6,11 @@ import { cacheLife, cacheTag } from "next/cache";
 export const getPosts = async () => {
     'use cache'
     cacheTag('blogs');
+    cacheLife({
+        stale: 120,
+        revalidate: 125,
+    })      
+   
     const supabase = createClient();
     const { data, error } = await supabase
         .from('posts')
@@ -25,13 +30,19 @@ export const getSinglePost = async (slug: string) => {
 export const getLandingPagePosts = async () => {
     'use cache'
     cacheTag('blogs-landing');
+       cacheLife({
+        stale: 120,
+        revalidate: 125,
+    })    
     const supabase = createClient();
     return await supabase.from('posts').select('*').range(0, 5).order('created_at', { ascending: false })
 }
 
 //Levels
 export const getLevelsByProject = async (projectId: number) => {
-
+    'use cache'
+    cacheTag(`levels-${projectId}`)
+    cacheLife({stale: 10, revalidate: 20})
     const supabase = createClient();
     return supabase.from('levels').select('*').eq('project_id', projectId).order('created_at');
 }
