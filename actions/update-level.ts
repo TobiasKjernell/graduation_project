@@ -14,5 +14,5 @@ export const UpdateLevel = async ({ id, updateInfo, project_id }: { id: number, 
     const { error } = await supabase.from('levels').update({ status: parsedData.status }).eq('id', id).select('status').single();
 
     if (error) throw new Error(error.message);
-    updateTag(`levels-${getUpateTagProjectId(project_id)}`)   
-}                               
+    updateTag(`levels-${project_id}`)   
+}                                   
