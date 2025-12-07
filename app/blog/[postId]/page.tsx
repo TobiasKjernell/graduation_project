@@ -3,6 +3,13 @@ import { getSinglePost } from "@/lib/supabase/queries";
 import { getProjectNameByNumber } from "@/lib/utils";
 import Image from "next/image";
 
+export const generateMetadata = async ({ params }: { params: Promise<{ postId: string }> }) => {
+    const { data } = await getSinglePost((await params).postId);
+    return {
+        title: `Blog: ${data?.title}`
+    }
+}
+
 const PostPage = async ({ params }: { params: Promise<{ postId: string }> }) => {
     const { data, error } = await getSinglePost((await params).postId);
 

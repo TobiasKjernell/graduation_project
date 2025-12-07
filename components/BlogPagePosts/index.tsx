@@ -9,8 +9,6 @@ const BlogPagePosts = async () => {
     return (
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-5 border p-5 psp-border-color shadow-2xl shadow-black psp-background-dark">
             {data && data.map(item => <BlogCard key={item.id} {...item} />)}
-            {data && data.map(item => <BlogCard key={item.id} {...item} />)}
-            {data && data.map(item => <BlogCard key={item.id} {...item} />)}
         </div>
     )
 }

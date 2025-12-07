@@ -3,7 +3,7 @@ import { getProjectNameByString } from "@/lib/utils";
 import LevelGridItem from "../LevelGridItem";
 
 const LevelsGrid = async ({ project }: { project: string }) => {
-  
+    'use cache'
     const { data, error } = await getLevelsByProject(getProjectNameByString(project))
     if (error) return <div>Something went wrong: {error.message}</div>
 
@@ -13,5 +13,5 @@ const LevelsGrid = async ({ project }: { project: string }) => {
         </div>
     )
 }
-        
+
 export default LevelsGrid;

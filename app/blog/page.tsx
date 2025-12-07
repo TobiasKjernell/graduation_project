@@ -3,6 +3,13 @@ import LandingNavbar from "@/components/LandingNavbar";
 import LandingSpinner from "@/components/LandingSpinner";
 import { Suspense } from "react";
 
+export const generateMetadata = async ({ params }: { params: Promise<{ postId: string }> }) => {
+
+    return {
+        title: `Blog`
+    }   
+}
+
 const BlogPage = () => {
     return (
         <>
