@@ -11,7 +11,7 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 
-const LevelGridItem = ({ name, status, id }: { name: string, status: boolean, id: number }) => {
+const LevelGridItem = ({ name, status, id, project_id }: { name: string, status: boolean, id: number, project_id: number }) => {
 
     const { mutate, isPending, error } = useMutation({
         mutationFn: UpdateLevel
@@ -25,7 +25,7 @@ const LevelGridItem = ({ name, status, id }: { name: string, status: boolean, id
                 <div className="flex items-center gap-2 ">
                     {isPending ? <Badge variant='outline'>Pending</Badge> : <Badge variant='secondary' className={cn(status ? 'bg-green-500'
                         : 'bg-red-500')}>{status ? 'Online' : 'Offline'}</Badge>}
-                    <Switch defaultChecked={status} onCheckedChange={(e) => mutate({ id, updateInfo: { status: e.valueOf() } })} />
+                    <Switch defaultChecked={status} onCheckedChange={(e) => mutate({ id, updateInfo: { status: e.valueOf() }, project_id: project_id  })} />
                 </div>
             </CardContent>
         </Card>

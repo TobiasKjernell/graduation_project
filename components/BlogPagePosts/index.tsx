@@ -1,8 +1,12 @@
 import { getPosts } from "@/lib/supabase/queries";
 import BlogCard from "../BlogCard"
+import { cacheTag } from "next/cache";
 
-const BlogPagePosts = async() => {
-
+export const revalidate = 1000;
+const BlogPagePosts = async () => {
+    'use cache'
+    cacheTag('blogs');
+    
     const { data, error } = await getPosts();
     return (
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-5 border p-5 psp-border-color shadow-2xl shadow-black psp-background-dark">

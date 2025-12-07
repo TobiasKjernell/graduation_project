@@ -4,7 +4,6 @@ import LandingSpinner from "@/components/LandingSpinner";
 import { Suspense } from "react";
 
 const BlogPage = () => {
-
     return (
         <>
             <div className="min-h-screen flex flex-col">
@@ -20,6 +19,6 @@ const BlogPage = () => {
             </div>
         </>
     )
-}   
+}
 
 export default BlogPage;

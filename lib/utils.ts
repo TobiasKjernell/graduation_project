@@ -5,16 +5,25 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const projectName = (project_id: number): string => {
+export const getProjectNameByNumber = (project_id: number): string => {
   switch (project_id) {
     case 1: return 'Slot Car Racing VR';
-    case 2: return 'Number Ops';
+    case 2: return 'Number Ops Mobile';
     case 3: return 'Website';
     default: return 'unknown';
   }
 }
 
-export const projectNameString = (project: string): number => {
+export const getUpateTagProjectId = (project_id: number): string => {
+  switch (project_id) {
+    case 1: return 'slotcarracing';
+    case 2: return 'numberops';
+    case 3: return 'website';
+    default: return 'unknown';
+  }
+}
+
+export const getProjectNameByString = (project: string): number => {
   switch (project) {
     case 'slotcarracing':
       return 1;

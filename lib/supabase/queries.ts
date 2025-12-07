@@ -7,15 +7,15 @@ export const getPosts = async () => {
    const {data, error} =  await supabase
         .from('posts')
         .select('*')
-
+    
     return {data, error}
 }
 
-export const getSinglePost = async (id: number) => {
+export const getSinglePost = async (slug: string) => {
     const supabase = createClient();
     return await supabase.from('posts')
-        .select('*')
-        .eq('id', id)
+        .select('*')    
+        .eq('slug', slug)
         .single();
 }
 
