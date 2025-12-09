@@ -32,15 +32,15 @@ const ScrollContainer = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <div ref={triggerPoint} className="xl:h-screen relative py-0 xl:py-5 flex flex-col xl:block gap-10">
-            <div className="w-full xl:w-[80%] relative h-[800px] psp-background-dark xl:absolute xl:top-[50%] xl:right-[50%] xl:translate-x-[50%] xl:translate-y-[-50%] border psp-border-color xl:rounded-2xl shadow-2xl shadow-black overflow-hidden">
+            <div className="w-full xl:w-[80%] relative h-[800px] psp-background-dark xl:absolute xl:top-[50%] xl:right-[50%] xl:translate-x-[50%] xl:translate-y-[-50%]  xl:border border-b psp-border-color xl:rounded-2xl shadow-2xl shadow-black overflow-hidden">
                 <LandingHeader />
             </div>
-            <div className="psp h-auto w-full xl:w-[80%] xl:h-[800px] psp-background-dark xl:top-[95%] xl:right-[50%] xl:translate-x-[50%] xl:rotate-2 rotate-0 border psp-border-color xl:rounded-2xl xl:absolute ">
+            <div className="psp h-auto w-full xl:w-[80%] xl:h-[800px] psp-background-dark xl:top-[95%] xl:right-[50%] xl:translate-x-[50%] xl:rotate-2 rotate-0 xl:border border-y psp-border-color xl:rounded-2xl xl:absolute ">
                 <LandingTeam />
             </div>
-            <div className="blog h-auto w-full xl:w-[80%] xl:h-[800px] psp-background-dark xl:absolute xl:top-[97%] xl:right-[50%] xl:translate-x-[50%] border psp-border-color xl:rounded-2xl ">
+            <div className="blog h-auto w-full xl:w-[80%] xl:h-[800px] psp-background-dark xl:absolute xl:top-[97%] xl:right-[50%] xl:translate-x-[50%] xl:border border-t  psp-border-color xl:rounded-2xl ">
                 <LandingBlog>
-                            {children}
+                    {children}
                 </LandingBlog>
             </div>
         </div>
