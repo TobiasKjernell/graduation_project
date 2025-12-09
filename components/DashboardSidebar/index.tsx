@@ -83,14 +83,6 @@ const DashboardSidebar = () => {
                                                     </Link>
                                                 </SidebarMenuSubButton>
                                             </SidebarMenuSubItem>
-                                            <SidebarMenuSubItem>
-                                                <SidebarMenuSubButton asChild>
-                                                    <Link href={`${items.gantUrl}`}>
-                                                        <GanttChart />
-                                                        Gant
-                                                    </Link>
-                                                </SidebarMenuSubButton>
-                                            </SidebarMenuSubItem>
                                         </SidebarMenuSub>
                                     </SidebarMenuSub>
                                 </SidebarMenuItem>
@@ -108,14 +100,7 @@ const DashboardSidebar = () => {
                                                 <KanbanSquare /> Kanban
                                             </Link>
                                         </SidebarMenuButton>
-                                    </SidebarMenuSubItem>
-                                    <SidebarMenuSubItem>            
-                                        <SidebarMenuButton asChild>
-                                            <Link href={'/dashboard/website/gant'}>
-                                                <GanttChart /> Gant
-                                            </Link>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuSubItem>
+                                    </SidebarMenuSubItem>                    
                                 </SidebarMenuSub>
                             </SidebarMenuItem>
                         </SidebarMenu>
