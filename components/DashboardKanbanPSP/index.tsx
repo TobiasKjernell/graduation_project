@@ -59,7 +59,7 @@ const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], col
                     <p className={isOnline === 'SUBSCRIBED' ? 'text-green-400' : 'text-red-500'}>{isOnline === 'SUBSCRIBED' ? 'Connected' : 'Disconnected'} </p>
                 </h2>
                 <DashboardKanbanCreate />
-                <div className="grid grid-cols-7 grid-rows-1 w-full gap-5 text-white">
+                <div className="grid grid-cols-1 grid-rows-none xl:grid-cols-7 xl:grid-rows-1 w-full gap-5 text-white">
                     {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={sortColumns} />)}
                 </div>
             </div>

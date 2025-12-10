@@ -36,7 +36,7 @@ const DashboardKanbanEdit = () => {
     }
 
     return <div className="absolute h-full w-full bg-black/30 top-0 right-0 flex flex-col justify-center items-center backdrop-blur-md psp-text-jura text-white">
-        <form className="bg-zinc-800 w-1/4 text-lg border rounded-sm" onSubmit={handleSubmit(values => {
+        <form className="bg-zinc-900 w-auto text-lg border rounded-sm" onSubmit={handleSubmit(values => {
             mutate({
                 ticketId: currentTicket!.id,
                 createInfo: {
@@ -46,10 +46,10 @@ const DashboardKanbanEdit = () => {
                 }
             })
         })}>
-            <fieldset className="flex flex-col bg-zinc-800 border-b px-2">
+            <fieldset className="flex flex-col bg-zinc-900 border-b px-2">
                 <div className="flex">
                     <label className="">Assign:</label>
-                    <select {...register('assigned')} defaultValue={'Tobias'} className="w-full bg-zinc-800 text-center">
+                    <select {...register('assigned')} defaultValue={'Tobias'} className="w-full bg-zinc-900 text-center">
                         {data && data.data?.map((user, index) => <option key={index} value={user.name!}>{user.name}</option>)}
                     </select>
                 </div>
@@ -57,7 +57,7 @@ const DashboardKanbanEdit = () => {
             </fieldset>
             <fieldset className="flex flex-col px-2">
                 <label className="border-b">Content</label>
-                <textarea className="p-2 min-h-60 bg-zinc-700" id="content" {...register('content')}></textarea>
+                <textarea className="p-2 min-h-60 bg-zinc-800" id="content" {...register('content')}></textarea>
                 {errors.content && <div className="bg-red-500 text-xs">{errors.content.message}</div>}
             </fieldset>
             <fieldset className="flex justify-between px-2">

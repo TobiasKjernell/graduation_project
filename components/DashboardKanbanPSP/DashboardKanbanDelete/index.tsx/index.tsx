@@ -14,7 +14,7 @@ const DashboardKanbanDelete = () => {
     );
 
     return (
-        <button onClick={(e) => { e.preventDefault(); mutate(currentTicket!.id) }} className="cursor-pointer text-red-500">{isPending ? <Spinner /> : 'Delete'}</button>
+        <button onClick={(e) => { e.preventDefault(); mutate(currentTicket!.id) }} className="cursor-pointer text-red-500 font-semibold text-xl">{isPending ? <Spinner /> : 'Delete'}</button>
     )
 }
 export default DashboardKanbanDelete;
