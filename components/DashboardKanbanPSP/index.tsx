@@ -42,7 +42,7 @@ export const mockColumns: IKanbanColumn[] = [
 ]
 
 const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], columns: KanbanColumns }) => {
-
+    const sortColumns = columns.sort((a,b) => a.position_id - b.position_id)
     const [currentPosts, setCurrentPosts] = useState<SingleKanbanPost[]>(posts)
     // const { data } = useQuery({
     //     queryFn: allKanbanPosts,
@@ -78,7 +78,7 @@ const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], col
     return (
         <div className="flex w-full text-white psp-text-jura">
             <div className="grid grid-cols-7 grid-rows-1 w-full gap-5">
-                {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={columns} />)}
+                {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={sortColumns} />)}
             </div>
         </div>
     )

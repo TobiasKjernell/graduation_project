@@ -12,7 +12,7 @@ const GamesPage = () => {
             <div className="psp-linear-background p-10 flex-1 flex flex-col items-center gap-5">
                 <h1 className="text-3xl psp-text-jura psp-text-gold">Our upcoming games</h1>
 
-                <div className="flex flex-col w-screen items-center gap-10">
+                <div className="flex flex-col w-full items-center gap-10">
                     <section className="flex flex-col overflow-hidden h-[600px] w-[80%] border psp-border-color relative">
                         <div className="flex-1 relative mask-b-from-55%">
                             <Image src={piratecove} fill alt="piratecove picture" className="object-cover blur-xs" placeholder='blur' />
