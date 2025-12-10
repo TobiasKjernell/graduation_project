@@ -1,7 +1,7 @@
-'use client'
 import { KanbanColumns, SingleKanbanPost } from "@/lib/supabase/queriesClient";
 import { IKanbanColumn } from "..";
 import DashboardKanbanCard from "../DashboardKanbanCard";
+
 
 const DashboardKanbanColumns = ({ column, posts, options }: { column: IKanbanColumn, posts: SingleKanbanPost[], options: KanbanColumns }) => {
 
@@ -13,8 +13,8 @@ const DashboardKanbanColumns = ({ column, posts, options }: { column: IKanbanCol
                 <h2 className="text-lg psp-text-jura capitalize">{column.name}</h2>
             </div>
             {/* card */}
-            {posts.map(item => item.status === column.name && <DashboardKanbanCard key={item.created_at} status={column.name} options={options} post={item}  />)}
-
+            {posts.map(item => item.status === column.name && <DashboardKanbanCard key={item.created_at} status={column.name} options={options} post={item} />)}
+        
         </div>
     )
 }

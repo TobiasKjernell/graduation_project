@@ -1,57 +1,23 @@
 'use client'
 
 import { createClient } from "@/lib/supabase/client";
+import { KanbanColumns, SingleKanbanPost } from "@/lib/supabase/queriesClient";
 import { useEffect, useState } from "react";
+import { useTicketEdit } from "./context/useTicketContext";
 import DashboardKanbanColumns from "./DashboardKanbanColumn";
-import { KanbanColumns, KanbanPosts, SingleKanbanPost } from "@/lib/supabase/queriesClient";
 import DashboardKanbanCreate from "./DashboardKanbanCreate";
+import DashboardKanbanEdit from "./DashboardKanbanEdit";
 
 export interface IKanbanColumn {
     name: string,
     color: string,
 }
 
-export const mockColumns: IKanbanColumn[] = [
-    {
-        name: 'Planned',
-        color: 'blue'
-    },
-    {
-        name: 'In progress',
-        color: 'limegreen'
-    },
-    {
-        name: 'Ready to test',
-        color: 'yellow'
-    },
-    {
-        name: 'Testing',
-        color: 'orange'
-    },
-    {
-        name: 'Testing failed',
-        color: 'red'
-    },
-    {
-        name: 'Testing succeed',
-        color: 'green'
-    },
-    {
-        name: 'Done',
-        color: 'purple'
-    }
-]
-
 const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], columns: KanbanColumns }) => {
     const sortColumns = columns.sort((a, b) => a.position_id - b.position_id)
     const [currentPosts, setCurrentPosts] = useState<SingleKanbanPost[]>(posts)
     const [isOnline, setIsOnline] = useState<string>('')
-    // const { data } = useQuery({
-    //     queryFn: allKanbanPosts,
-    //     queryKey: ['allKanbanPosts'],
-    // }
-    // )
-
+    const { isEditing } = useTicketEdit()
     useEffect(() => {
 
         const supabase = createClient();
@@ -65,32 +31,40 @@ const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], col
                     table: 'kanbanPosts',
                 },
                 (payload) => {
-                    const kan = payload.new as SingleKanbanPost;
+                    let kan = payload.new as SingleKanbanPost;
                     switch (payload.eventType) {
                         case "INSERT":
-                            setCurrentPosts((e) =>[...e, kan])
+                            setCurrentPosts((e) => [...e, kan])
+                            break;
                         case "UPDATE":
-                            setCurrentPosts((e) =>[...e.filter(item => item.id !== kan.id), kan])
+                            setCurrentPosts((e) => [...e.filter(item => item.id !== kan.id), kan])
+                            break;
                         case "DELETE":
+                            kan = payload.old as SingleKanbanPost;
+                            setCurrentPosts((e) => [...e.filter(item => item.id !== kan.id)])
+                            break;
                     }
                 }
             )
             .subscribe((status) => setIsOnline(status))
-    
+
         return () => { supabase.removeChannel(channel) }
     }, [])
 
-
     return (
-        <div className="flex flex-col w-full  psp-text-jura gap-2">
-            <h2 className="flex gap-2 text-xl">Kanban status:
-                <p className={isOnline === 'SUBSCRIBED' ? 'text-green-400' : 'text-red-500'}>{isOnline === 'SUBSCRIBED' ? 'Online' : 'Offline'} </p>
-            </h2>
-            <DashboardKanbanCreate />
-            <div className="grid grid-cols-7 grid-rows-1 w-full gap-5 text-white">
-                {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={sortColumns} />)}
+        <>
+            {isEditing && <DashboardKanbanEdit />}
+            <div className="flex flex-col w-full  psp-text-jura gap-2">
+                <h2 className="flex gap-2 text-xl">Kanban status:
+                    <p className={isOnline === 'SUBSCRIBED' ? 'text-green-400' : 'text-red-500'}>{isOnline === 'SUBSCRIBED' ? 'Connected' : 'Disconnected'} </p>
+                </h2>
+                <DashboardKanbanCreate />
+                <div className="grid grid-cols-7 grid-rows-1 w-full gap-5 text-white">
+                    {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={sortColumns} />)}
+                </div>
             </div>
-        </div>
+
+        </>
     )
 }
 
