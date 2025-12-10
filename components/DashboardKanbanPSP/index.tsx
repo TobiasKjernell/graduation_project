@@ -1,16 +1,21 @@
+'use client'
+
+import { createClient } from "@/lib/supabase/client";
+import { useEffect, useState } from "react";
 import DashboardKanbanColumns from "./DashboardKanbanColumn";
+import { KanbanColumns, KanbanPosts, SingleKanbanPost } from "@/lib/supabase/queriesClient";
 
 export interface IKanbanColumn {
     name: string,
     color: string,
 }
 
-export const mockColumns:IKanbanColumn[] =  [
+export const mockColumns: IKanbanColumn[] = [
     {
         name: 'Planned',
         color: 'blue'
     },
-    {   
+    {
         name: 'In progress',
         color: 'limegreen'
     },
@@ -26,7 +31,7 @@ export const mockColumns:IKanbanColumn[] =  [
         name: 'Testing failed',
         color: 'red'
     },
-    {   
+    {
         name: 'Testing succeed',
         color: 'green'
     },
@@ -34,18 +39,49 @@ export const mockColumns:IKanbanColumn[] =  [
         name: 'Done',
         color: 'purple'
     }
-] 
+]
 
-const DashboardKanbanPSP = async() => {
+const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], columns: KanbanColumns }) => {
+
+    const [currentPosts, setCurrentPosts] = useState<SingleKanbanPost[]>(posts)
+    // const { data } = useQuery({
+    //     queryFn: allKanbanPosts,
+    //     queryKey: ['allKanbanPosts'],
+    // }
+    // )
+
+    useEffect(() => {
+
+        const supabase = createClient();
+        const channel = supabase
+            .channel('table-db-changes')
+            .on(
+                'postgres_changes',
+                {
+                    event: 'INSERT',
+                    schema: 'public',
+                    table: 'kanbanPosts',
+                },
+                (payload) => {
+                    const kan = payload.new as SingleKanbanPost;
+                    setCurrentPosts([...currentPosts, kan])
+
+                }
+
+            )
+            .subscribe()
+     
+        return () => { supabase.removeChannel(channel) }
+    }, [currentPosts])
+
 
     return (
         <div className="flex w-full text-white psp-text-jura">
             <div className="grid grid-cols-7 grid-rows-1 w-full gap-5">
-                {mockColumns.map(item => <DashboardKanbanColumns key={item.name} {...item} />)}
+                {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={columns} />)}
             </div>
-
         </div>
     )
 }
 
-export default DashboardKanbanPSP;  
+export default DashboardKanbanPSP;      

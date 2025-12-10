@@ -1,9 +1,9 @@
+import { KanbanColumns } from "@/lib/supabase/queriesClient"
 import { Settings } from "lucide-react"
-import { IKanbanColumn } from ".."
 
 interface IKanbanCard {
     status: string,
-    options: IKanbanColumn[]
+    options: KanbanColumns
 }
 
 const DashboardKanbanCard = ({status, options}:IKanbanCard) => {
