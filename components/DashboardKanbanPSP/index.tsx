@@ -42,7 +42,7 @@ export const mockColumns: IKanbanColumn[] = [
 ]
 
 const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], columns: KanbanColumns }) => {
-    const sortColumns = columns.sort((a,b) => a.position_id - b.position_id)
+    const sortColumns = columns.sort((a, b) => a.position_id - b.position_id)
     const [currentPosts, setCurrentPosts] = useState<SingleKanbanPost[]>(posts)
     // const { data } = useQuery({
     //     queryFn: allKanbanPosts,
@@ -58,19 +58,25 @@ const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], col
             .on(
                 'postgres_changes',
                 {
-                    event: 'INSERT',
+                    event: '*',
                     schema: 'public',
                     table: 'kanbanPosts',
                 },
                 (payload) => {
                     const kan = payload.new as SingleKanbanPost;
-                    setCurrentPosts([...currentPosts, kan])
-
+                    switch (payload.eventType) {
+                        case "INSERT":
+                            setCurrentPosts([...currentPosts, kan])
+                        case "UPDATE":
+                            const postToUpdate = currentPosts.filter(item => item.id !== kan.id)
+                            setCurrentPosts([...postToUpdate, kan])                 
+                        case "DELETE":  
+                    }
                 }
-
+                
             )
             .subscribe()
-     
+
         return () => { supabase.removeChannel(channel) }
     }, [currentPosts])
 

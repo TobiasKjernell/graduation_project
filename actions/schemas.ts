@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { number, z } from 'zod'
 
 export const loginSchema = z.object({
     email: z.email(),
@@ -15,4 +15,14 @@ export const levelSchema = z.object({
     status: z.boolean()
 })
 
+export const kanbanPostSchema = z.object({
+    content: z.string(),
+    assigned: z.string(),
+    status: z.string()
+})
+
+export const kanbanPostStatus = z.object({
+    status: z.string(),
+    id: z.number()
+})
 
