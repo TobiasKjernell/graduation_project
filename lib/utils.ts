@@ -37,7 +37,7 @@ export const getProjectNameByString = (project: string): number => {
 
 export const imageFallback = (project_id: number): string => {
   switch (project_id) {
-    case 1: return '/codeplaceholder.png';
+    case 1: return '/piratecove.png';
     case 2: return '/numberopsplaceholder.png';
     case 3: return '/codeplaceholder.png';
     default: return '/codeplaceholder.png';

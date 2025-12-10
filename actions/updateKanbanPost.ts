@@ -9,11 +9,8 @@ export const UpdateKanbanPost = async ({ updateKanbanPost, id }: { updateKanbanP
     const isValid = kanbanPostSchema.safeParse(parsedData);
 
     if (isValid) {
-        console.log('inne');
         const supabase = await createClient();
-        console.log(parsedData);
-        const { data, error } = await supabase.from('kanbanPosts').update({ status: parsedData.status }).eq('id', id).select('*').single();
-        console.log(data)
+        const { error } = await supabase.from('kanbanPosts').update({ status: parsedData.status }).eq('id', id).select('*').single();
         if (error) throw new Error(error.message)
     }
 

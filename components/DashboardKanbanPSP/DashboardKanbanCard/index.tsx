@@ -34,8 +34,8 @@ const DashboardKanbanCard = ({ status, options, post }: IKanbanCard) => {
                     <Settings className="hover:text-zinc-400" />
                 </button>
             </div>
-            <h3 className="text-[14px]">Update car with explotion, reset map </h3>
-            <h4 className="text-sm psp-text-gold">Assigned to: Tobias</h4>
+            <h3 className="text-[14px]">{isPending ? 'Syncing..' : post.content}</h3>
+            <h4 className="text-sm psp-text-gold">Assigned to: {post.assigned}</h4>
         </div>
     )
 }

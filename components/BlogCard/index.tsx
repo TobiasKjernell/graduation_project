@@ -15,7 +15,7 @@ const BlogCard = async ({ author, content, project_id, slug, title }: SinglePost
                 <h3 className='text-xl'>{title}</h3>
                 <p className='text-wrap text-sm'> {content.slice(0, 80)}...  </p>
                 <h4 className="text-sm psp-text-gold ml-auto">Author: {author}</h4>
-            </div>
+            </div>  
         </Link>
     )   
 }   

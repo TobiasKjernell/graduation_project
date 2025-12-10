@@ -62,8 +62,7 @@ export const getLevel = async (levelId: number) => {
 function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-//Posts   
+ 
 
 export type BlogPosts = QueryData<ReturnType<typeof getPosts>>
 export type SinglePost = QueryData<ReturnType<typeof getSinglePost>>    
