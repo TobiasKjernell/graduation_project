@@ -8,31 +8,31 @@ export interface IKanbanColumn {
 export const mockColumns:IKanbanColumn[] =  [
     {
         name: 'Planned',
-        color: '#blue'
+        color: 'blue'
     },
-    {
+    {   
         name: 'In progress',
-        color: '#limegreen'
+        color: 'limegreen'
     },
     {
         name: 'Ready to test',
-        color: '#yellow'
+        color: 'yellow'
     },
     {
         name: 'Testing',
-        color: '#orange'
+        color: 'orange'
     },
     {
         name: 'Testing failed',
-        color: '#red'
+        color: 'red'
     },
-    {
+    {   
         name: 'Testing succeed',
-        color: '#green'
+        color: 'green'
     },
     {
         name: 'Done',
-        color: '#purple'
+        color: 'purple'
     }
 ] 
 
