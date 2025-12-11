@@ -1,6 +1,7 @@
-import { KanbanColumns, SingleKanbanPost } from "@/lib/supabase/queriesClient";
+import {  SingleKanbanPost } from "@/lib/supabase/queriesClient";
 import { IKanbanColumn } from "..";
 import DashboardKanbanCard from "../DashboardKanbanCard";
+import { KanbanColumns } from "@/lib/supabase/queries";
 
 
 const DashboardKanbanColumns = ({ column, posts, options }: { column: IKanbanColumn, posts: SingleKanbanPost[], options: KanbanColumns }) => {

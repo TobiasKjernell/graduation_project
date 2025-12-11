@@ -18,7 +18,10 @@ export const levelSchema = z.object({
 export const kanbanPostSchema = z.object({
     content: z.string().min(6, 'Need more than 6 characters'),
     assigned: z.string().min(3, 'Post needs a default assigned person'),
-    status: z.string()
+    tester: z.string().optional(),
+    testerFeedback: z.string().optional(),
+    status: z.string(),
+    project: z.number()
 })
 
 export const kanbanPostStatus = z.object({

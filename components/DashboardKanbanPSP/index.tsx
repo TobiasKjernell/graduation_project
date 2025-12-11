@@ -1,34 +1,36 @@
 'use client'
 
 import { createClient } from "@/lib/supabase/client";
-import { KanbanColumns, SingleKanbanPost } from "@/lib/supabase/queriesClient";
+import { SingleKanbanPost } from "@/lib/supabase/queriesClient";
 import { useEffect, useState } from "react";
 import { useTicketEdit } from "./context/useTicketContext";
 import DashboardKanbanColumns from "./DashboardKanbanColumn";
-import DashboardKanbanCreate from "./DashboardKanbanCreate";
 import DashboardKanbanEdit from "./DashboardKanbanEdit";
+import { KanbanColumns } from "@/lib/supabase/queries";
+import DashboardKanbanCreate from "./DashboardKanbanCreate";
 
 export interface IKanbanColumn {
     name: string,
     color: string,
 }
 
-const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], columns: KanbanColumns }) => {
+const DashboardKanbanPSP = ({ posts, columns, }: { posts: SingleKanbanPost[], columns: KanbanColumns }) => {
+
     const sortColumns = columns.sort((a, b) => a.position_id - b.position_id)
     const [currentPosts, setCurrentPosts] = useState<SingleKanbanPost[]>(posts)
     const [isOnline, setIsOnline] = useState<string>('')
     const { isEditing } = useTicketEdit()
-    useEffect(() => {
 
+    useEffect(() => {
         const supabase = createClient();
         const channel = supabase
-            .channel('table-db-changes')
+            .channel(`game_project_${columns[0].project_id}`)
             .on(
                 'postgres_changes',
                 {
                     event: '*',
                     schema: 'public',
-                    table: 'kanbanPosts',
+                    table: `kanbanPosts_${columns[0].project_id}`,
                 },
                 (payload) => {
                     let kan = payload.new as SingleKanbanPost;
@@ -37,7 +39,7 @@ const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], col
                             setCurrentPosts((e) => [...e, kan])
                             break;
                         case "UPDATE":
-                            setCurrentPosts((e) => [...e.filter(item => item.id !== kan.id), kan])
+                            setCurrentPosts((e) => [...e.map(item => item.id === kan.id ? kan : item)])
                             break;
                         case "DELETE":
                             kan = payload.old as SingleKanbanPost;
@@ -46,19 +48,20 @@ const DashboardKanbanPSP = ({ posts, columns }: { posts: SingleKanbanPost[], col
                     }
                 }
             )
-            .subscribe((status) => setIsOnline(status))
+            .subscribe((status) => { setIsOnline(status); })
 
         return () => { supabase.removeChannel(channel) }
     }, [])
 
     return (
         <>
-            {isEditing && <DashboardKanbanEdit />}
+
             <div className="flex flex-col w-full  psp-text-jura gap-2">
+                {isEditing && <DashboardKanbanEdit />}
                 <h2 className="flex gap-2 text-xl">Kanban status:
                     <p className={isOnline === 'SUBSCRIBED' ? 'text-green-400' : 'text-red-500'}>{isOnline === 'SUBSCRIBED' ? 'Connected' : 'Disconnected'} </p>
                 </h2>
-                <DashboardKanbanCreate />
+                <DashboardKanbanCreate project={columns[0].project_id!} />
                 <div className="grid grid-cols-1 grid-rows-none xl:grid-cols-7 xl:grid-rows-1 w-full gap-5 text-white">
                     {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={sortColumns} />)}
                 </div>

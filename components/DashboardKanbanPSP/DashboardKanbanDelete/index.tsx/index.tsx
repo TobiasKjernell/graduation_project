@@ -1,12 +1,14 @@
 'use client'
+
 import { DeleteTicket } from "@/actions/deleteKanbanPost";
 import { Spinner } from "@/components/ui/spinner";
 import { useMutation } from "@tanstack/react-query";
 import { useTicketEdit } from "../../context/useTicketContext";
+import { idProject } from "@/actions/editKanbanPost";
 
 const DashboardKanbanDelete = () => {
     const { currentTicket, toggleEditing, handleSetTicket } = useTicketEdit();
-    const { mutate, isPending } = useMutation(
+    const { mutate, isPending, error } = useMutation(
         {
             mutationFn: DeleteTicket,
             onSuccess: () => { handleSetTicket(null); toggleEditing(); }
@@ -14,7 +16,20 @@ const DashboardKanbanDelete = () => {
     );
 
     return (
-        <button onClick={(e) => { e.preventDefault(); mutate(currentTicket!.id) }} className="cursor-pointer text-red-500 font-semibold text-xl">{isPending ? <Spinner /> : 'Delete'}</button>
+        <>
+            {error ? <span className="text-red-500 text-xl font-semibold">Cannot delete, server issues</span>
+                : <button disabled={isPending} onClick={(e) => {
+                    e.preventDefault(); mutate(
+                        {
+                            ticketId: currentTicket!.id,
+                            projectId: currentTicket?.project_id as idProject
+                        })
+                }}
+                    className="cursor-pointer text-red-500 font-semibold text-xl">
+                    {isPending ? <Spinner /> : 'Delete'}
+                </button>
+            }
+        </>
     )
 }
 export default DashboardKanbanDelete;
