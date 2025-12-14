@@ -80,12 +80,12 @@ const DashboardKanbanEdit = () => {
                 </div>
 
             </fieldset>
-            <div className="flex">
+            <div className="flex flex-col lg:flex-row">
                 <fieldset className="flex flex-col px-2">
                     <label className="border-b">Content</label>
                     <textarea disabled={isPending} className="p-2 min-h-60 bg-zinc-800" id="content" {...register('content')}></textarea>
                     {errors.content && <div className="bg-red-500 text-xs">{errors.content.message}</div>}
-                </fieldset>
+                </fieldset> 
                 <fieldset className="flex flex-col px-2">
                     <label className="border-b">Test notes</label>
                     <textarea disabled={isPending} className="p-2 min-h-60 bg-zinc-800" id="testerFeedback" {...register('testerFeedback')}></textarea>

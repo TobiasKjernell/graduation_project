@@ -14,7 +14,7 @@ const LandingBlog = ({ children }: { children: React.ReactNode }) => {
             <Suspense fallback={<LandingSpinner />}>
                 {children}
             </Suspense>
-        </div>
+        </div>  
     )
 }
 

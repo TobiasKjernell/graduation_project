@@ -12,7 +12,7 @@ export const generateMetadata = async ({ params }: { params: Promise<{ postId: s
 
 const PostPage = async ({ params }: { params: Promise<{ postId: string }> }) => {
     const { data, error } = await getSinglePost((await params).postId);
-
+    
     if (error) return <div>Something went wrong</div>
     return (
         <div className="flex flex-col gap-5 border p-5 psp-border-color shadow-2xl shadow-black psp-background-dark w-auto">

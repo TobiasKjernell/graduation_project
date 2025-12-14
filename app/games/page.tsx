@@ -21,7 +21,7 @@ const GamesPage = () => {
                         <div className="absolute top-[50%] translate-x-[50%] right-[50%] translate-y-[-50%] bg-gray-800/80 p-4 border psp-border-color">
                             <h2 className="psp-text-gold text-2xl lg:text-4xl psp-text-jura font-semibold">Slot Car Racing VR</h2>
                             <h3 className="psp-text-jura">More information coming soon</h3>
-                        </div>  
+                        </div>      
                     </section>          
 
                     <section className="flex flex-col overflow-hidden h-[600px] w-[80%] border psp-border-color relative">

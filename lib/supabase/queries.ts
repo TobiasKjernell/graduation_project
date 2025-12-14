@@ -3,8 +3,6 @@ import { createClient } from "./client"
 import { cacheLife, cacheTag } from "next/cache";
 import { idProject } from "@/actions/editKanbanPost";
 
-
-
 export const getAllColumns = (project_id: idProject) => {
     const supabase = createClient()
     return supabase.from(`kanbanColumns_${project_id}`).select('*');
@@ -69,8 +67,6 @@ function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
 export type BlogPosts = QueryData<ReturnType<typeof getPosts>>
 export type SinglePost = QueryData<ReturnType<typeof getSinglePost>>
-
 export type KanbanColumns = QueryData<ReturnType<typeof getAllColumns>>  
