@@ -16,9 +16,9 @@ const PostPage = async ({ params }: { params: Promise<{ postId: string }> }) => 
     if (error) return <div>This post do not exists  </div>
     return (
         <div className="flex flex-col gap-5 border p-5 psp-border-color shadow-2xl shadow-black psp-background-dark w-[80%] ">
-            <div className="flex  flex-col-reverse lg:flex-row psp-text-jura justify-between">
+            <div className="flex flex-col-reverse lg:flex-row psp-text-jura justify-between">
                 <div className="flex flex-col">
-                    <h1 className="xl:text-3xl">{data.title}</h1>
+                    <h1 className="xl:text-3xl wrap-break-word">{data.title}</h1>
                     <h2 className="psp-text-gold text-sm">Author: {data.author}</h2>
                 </div>      
                 <h2 className="xl:text-3xl psp-text-gold">{getProjectNameByNumber(data.project_id)}</h2>

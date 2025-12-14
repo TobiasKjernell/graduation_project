@@ -37,7 +37,7 @@ export const blogPostSchema = z.object({
     author: z.string()
 })
 
-export const postWithImageSchema = blogPostSchema.omit({ images: true })
+export const blogPostWithImageSchema = blogPostSchema.omit({ images: true })
     .extend({
         images: z.unknown()
             .transform(value => {
@@ -49,7 +49,7 @@ export const postWithImageSchema = blogPostSchema.omit({ images: true })
                     "image/jpg",
                 ].includes(file.type)) : true
             }, { error: 'Wrong file type, needs to be: png, jpg, jpeg' })
-            .refine(files => { return files.every(item => item.size >= 1000000 ? false : true) },
-                { error: 'An image needs to be lesser than 1MB' }).optional().nullable()
+            .refine(files => { return files.every(item => item.size >= 2000000 ? false : true) },
+                { error: 'An image needs to be lesser than 2MB' }).optional().nullable()
     })    
 

@@ -6,7 +6,6 @@ const LandingBlogGrid = async () => {
     return (
         <div className='grid grid-cols-1 xl:grid-cols-3 grid-rows-2 gap-5 p-5'>
             {data && data.map(item => <BlogCard key={item.id} {...item} />)}
-            {data && data.map(item => <BlogCard key={item.id} {...item} />)}
         </div>
     )
 }   
