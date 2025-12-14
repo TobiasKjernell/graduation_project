@@ -29,3 +29,26 @@ export const kanbanPostStatus = z.object({
     id: z.number()
 })
 
+export const blogPostSchema = z.object({
+    title: z.string().min(3, 'Title must have more than 3 characters'),
+    content: z.string().min(6, 'There must be content'),
+    images: z.instanceof(FormData).optional().or(z.null()),
+    project: z.number()
+})
+
+export const postWithImageSchema = blogPostSchema.omit({ images: true })
+    .extend({
+        images: z.unknown()
+            .transform(value => {
+                return value as FileList
+            }).transform((value) => Array.from(value)).refine(files => {    
+                return files !== null ? files.every(file => [
+                    "image/png",    
+                    "image/jpeg",
+                    "image/jpg",
+                ].includes(file.type)) : true
+            }, { error: 'Wrong file type, needs to be: png, jpg, jpeg' })
+            .refine(files => { return files.every(item => item.size >= 1000000 ? false : true) },
+                { error: 'An image needs to be lesser than 1MB' }).optional().nullable()
+    })    
+
