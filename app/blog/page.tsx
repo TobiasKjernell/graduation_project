@@ -8,7 +8,7 @@ import { Suspense } from "react";
 export const generateMetadata = async ({ params }: { params: Promise<{ postId: string }> }) => {
 
     return {
-        title: `Blog`
+        title: `Blog / ${(await params).postId}`
     }
 }
 
@@ -19,7 +19,7 @@ const BlogPage = async () => {
         <>
             <div className="min-h-screen flex flex-col">
                 <div className="psp-background-dark">
-                    <LandingNavbar />   
+                    <LandingNavbar />
                 </div>
                 <div className="psp-linear-background p-10 flex-1 flex flex-col items-center gap-5">
                     {user && <DashboardCreatePost title="Create post" user={user.user_metadata.display_name} />} 

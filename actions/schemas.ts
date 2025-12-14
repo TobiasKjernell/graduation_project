@@ -33,7 +33,8 @@ export const blogPostSchema = z.object({
     title: z.string().min(3, 'Title must have more than 3 characters'),
     content: z.string().min(6, 'There must be content'),
     images: z.instanceof(FormData).optional().or(z.null()),
-    project: z.number()
+    project: z.string(),
+    author: z.string()
 })
 
 export const postWithImageSchema = blogPostSchema.omit({ images: true })

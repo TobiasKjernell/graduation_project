@@ -19,7 +19,7 @@ export const getPosts = async () => {
     const supabase = createClient();
     const { data, error } = await supabase
         .from('posts')
-        .select('*')
+        .select('*').order('created_at', { ascending: false })
 
     return { data, error }
 }

@@ -47,7 +47,6 @@ const DashboardKanbanCard = ({ status, options, post }: IKanbanCard) => {
                 <h4 className="text-sm psp-text-gold">Assigned to: {post.assigned}</h4>
                 <span className="flex text-white">#<div className="psp-text-gold">{post.id}</div></span>
             </div>
-
         </div>
     )
 }
