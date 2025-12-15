@@ -6,7 +6,7 @@ import { imageFallback, getProjectNameByNumber } from "@/lib/utils";
 const BlogCard = async ({ author, content, project_id, slug, title }: SinglePost) => {
 
     return (
-        <Link href={`/blog/${slug}`} className='flex flex-row xl:flex-col border psp-border-color rounded-sm overflow-hidden psp-background-light hover:bg-[#0a1428]'>
+        <Link href={`/blog/${slug}`} className='flex flex-row xl:flex-col border psp-border-color rounded-sm overflow-hidden psp-background-light hover:bg-[#0a1428] w-full'>
             <div className='hidden xl:block relative h-44 mask-b-from-10% overflow-hidden'>
                 <Image src={imageFallback(project_id)} alt='test picture' fill className='object-cover' />
             </div>

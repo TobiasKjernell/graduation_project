@@ -24,6 +24,7 @@ export const CreateBlogPost = async ({ createInfo }: { createInfo: z.infer<typeo
 
         if (error) throw new Error(error.message)
 
-        updateTag('blogs')
+        updateTag('blogs');
+        updateTag('landing-posts')
     }
 }

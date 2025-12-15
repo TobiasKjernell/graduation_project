@@ -57,7 +57,7 @@ const EditPostForm = ({ handleOnClick, post }: { handleOnClick: () => void, post
         <form className="max-w-[80%] w-full flex flex-col gap-2 my-5 lg:my-0" onSubmit={handleSubmit((values) => {
             let imageForm: null | FormData = null;
 
-            if (values.images && values.images.length > 0) {
+            if (values.images && values.images.length > 0) {    
                 imageForm = new FormData();
                 values.images.forEach(item => imageForm!.append('image', item))
             }

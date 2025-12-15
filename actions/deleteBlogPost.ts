@@ -10,5 +10,6 @@ export const DeleteBlogPost = async (postId:number) => {
     await supabase.from(`posts`).delete().eq('id', postId);
 
     updateTag('blogs')
+    updateTag('landing-posts')
     redirect('/blog')
 }   

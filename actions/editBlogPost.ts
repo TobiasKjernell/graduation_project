@@ -30,6 +30,7 @@ export const EditBlogPost = async ({ updateInfo, currentImages, postId }: { post
 
         if (updateError) return { error: updateError.message }
         updateTag('blogs')
+        updateTag('landing-posts')
         redirect('/blog')
     }
 }

@@ -56,10 +56,6 @@ const Navbar = () => {
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="cursor-pointer">
-                            <User className="h-[1.2rem] w-[1.2rem] mr-2" />
-                            Profile
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className="cursor-pointer">
                             <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
                             Settings
                         </DropdownMenuItem >
