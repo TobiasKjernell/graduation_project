@@ -1,5 +1,6 @@
 'use client'
 
+import { SignOut } from "@/actions/log-out";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -8,13 +9,12 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
+import { LogOut, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { SidebarTrigger } from "../ui/sidebar";
-import { useTheme } from "next-themes";
-import { SignOut } from "@/actions/log-out";
 
 const Navbar = () => {
     const { setTheme } = useTheme()
@@ -55,13 +55,13 @@ const Navbar = () => {
                     <DropdownMenuContent sideOffset={10}>
                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem className="cursor-pointer">
-                            <Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
-                            Settings
+                        <DropdownMenuItem className="cursor-pointer" asChild>
+                          
+                            <Link href={'/dashboard/user'}>Hello</Link>
                         </DropdownMenuItem >
                         <DropdownMenuItem onClick={() => SignOut()} variant='destructive' className="cursor-pointer">
-                                <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />
-                                Logout
+                            <LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />
+                            Log out
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

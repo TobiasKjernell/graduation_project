@@ -5,7 +5,7 @@ import numberops from '@/public/numberopsplaceholder.png'
 
 const GamesPage = () => {
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col text-white">
             <div className="psp-background-dark">
                 <LandingNavbar />
             </div>

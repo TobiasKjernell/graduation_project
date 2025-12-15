@@ -17,7 +17,7 @@ const BlogPage = async () => {
     const { data: { user }, error } = await supabase.auth.getUser();
     return (
         <>
-            <div className="min-h-screen flex flex-col">
+            <div className="min-h-screen flex flex-col text-white">
                 <div className="psp-background-dark">
                     <LandingNavbar />
                 </div>

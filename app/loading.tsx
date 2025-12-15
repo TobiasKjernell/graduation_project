@@ -4,7 +4,7 @@ const Loading = () => {
     return (
 
         <div className="psp-linear-background h-screen flex items-center justify-center">
-                  <Spinner className="size-55" />  
+                  <Spinner className="size-55 text-white"  />  
             </div>
       
     )
