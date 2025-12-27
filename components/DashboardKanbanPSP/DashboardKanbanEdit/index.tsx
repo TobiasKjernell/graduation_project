@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useTicketEdit } from "../context/useTicketContext";
 import { EditKanbanPost } from "@/actions/editKanbanPost";
 import DashboardKanbanDelete from "../DashboardKanbanDelete/index.tsx";
+import { UpdateTypeEnum } from "..";
 
 const DashboardKanbanEdit = () => {
 
@@ -50,7 +51,8 @@ const DashboardKanbanEdit = () => {
                     tester: values.tester === 'none' || values.tester === '' ? 'none' : values.tester,
                     testerFeedback: values.testerFeedback ? values.testerFeedback : '',
                     project: currentTicket!.project_id!
-                }
+                },
+                updateType: UpdateTypeEnum.info
             })
         })}>
             <fieldset className="flex items-center justify-between  bg-zinc-900 border-b px-2">

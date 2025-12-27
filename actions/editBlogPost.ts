@@ -9,7 +9,6 @@ import { uploadImages } from "@/lib/supabase/imageUpload";
 import { redirect } from "next/navigation";
 
 
-
 export const EditBlogPost = async ({ updateInfo, currentImages, postId }: { postId: number, updateInfo: z.infer<typeof blogPostSchema>, currentImages: string[] | null }) => {
     const parsedData = blogPostSchema.parse(updateInfo);
     const isValid = blogPostSchema.safeParse(parsedData)

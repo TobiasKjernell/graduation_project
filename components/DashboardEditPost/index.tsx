@@ -37,7 +37,7 @@ const EditPostForm = ({ handleOnClick, post }: { handleOnClick: () => void, post
     });
     const [imageName, setImageName] = useState<string[]>([]);
     const [currentImages, setCurrentImages] = useState<string[] | null>(post.image_url)
-    const { mutate, error, isPending } = useMutation({
+    const { mutate, error, isPending } = useMutation({          
         mutationFn: EditBlogPost,
         mutationKey: ['blogPost'],
         onSuccess: handleOnClick
@@ -47,8 +47,9 @@ const EditPostForm = ({ handleOnClick, post }: { handleOnClick: () => void, post
     const handleDeleteImages = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         post.image_url = null;
-        setCurrentImages(null);
+        setCurrentImages(null);             
     }
+    if(error?.message) return null;
     return <div className="fixed h-full overflow-y-scroll overflow-x-hidde w-screen flex flex-col psp-linear-background top-0 b-0 z-10 psp-text-jura items-center text-white">
         <div className="flex gap-2 mt-10">
             <button className="bg-gray-900 text-2xl border psp-border-color px-6 py-4 cursor-pointer psp-text-jura text-white hover:text-gray-400 " onClick={() => { reset(); handleOnClick(); }}>Close</button>

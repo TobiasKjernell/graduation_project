@@ -14,6 +14,22 @@ export interface IKanbanColumn {
     color: string,
 }
 
+export enum UpdateTypeEnum {
+    movement = "movement",
+    info = "info"
+}
+
+const animateGreenBorder = (kan: SingleKanbanPost) => {
+    document.querySelector(`.${kan.assigned + "-" + kan.id}`)?.animate([
+        { borderColor: '#01c70b' },
+        { rangeStart: "cover 100%" },
+        { rangeEnd: "cover 0%" },
+
+    ], {
+        duration: 1500,
+    })
+}
+
 const DashboardKanbanPSP = ({ posts, columns, }: { posts: SingleKanbanPost[], columns: KanbanColumns }) => {
 
     const sortColumns = columns.sort((a, b) => a.position_id - b.position_id)
@@ -34,12 +50,26 @@ const DashboardKanbanPSP = ({ posts, columns, }: { posts: SingleKanbanPost[], co
                 },
                 (payload) => {
                     let kan = payload.new as SingleKanbanPost;
+
                     switch (payload.eventType) {
                         case "INSERT":
                             setCurrentPosts((e) => [...e, kan])
+                            animateGreenBorder(kan);
                             break;
                         case "UPDATE":
-                            setCurrentPosts((e) => [...e.map(item => item.id === kan.id ? kan : item)])
+                            switch (kan.updateType) {
+                                case UpdateTypeEnum.info:
+                                    setCurrentPosts((e) => [...e.map(item => item.id === kan.id ? kan : item)])
+                                    animateGreenBorder(kan);
+                                    break;
+                                case UpdateTypeEnum.movement:
+                                     setCurrentPosts((e) => [...e.filter(item => item.id !== kan.id), kan])        
+                                    break;
+                                default:
+                                    setCurrentPosts((e) => [...e.map(item => item.id === kan.id ? kan : item)])
+                                    animateGreenBorder(kan);
+                                    break;
+                            }
                             break;
                         case "DELETE":
                             kan = payload.old as SingleKanbanPost;
@@ -49,13 +79,11 @@ const DashboardKanbanPSP = ({ posts, columns, }: { posts: SingleKanbanPost[], co
                 }
             )
             .subscribe((status) => { setIsOnline(status); })
-
         return () => { supabase.removeChannel(channel) }
-    }, [])
+    }, [columns])
 
     return (
         <>
-
             <div className="flex flex-col w-full  psp-text-jura gap-2">
                 {isEditing && <DashboardKanbanEdit />}
                 <h2 className="flex gap-2 text-xl">Kanban status:
@@ -63,10 +91,9 @@ const DashboardKanbanPSP = ({ posts, columns, }: { posts: SingleKanbanPost[], co
                 </h2>
                 <DashboardKanbanCreate project={columns[0].project_id!} />
                 <div className="grid grid-cols-1 grid-rows-none xl:grid-cols-7 xl:grid-rows-1 w-full gap-5 text-white">
-                    {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts} column={item} options={sortColumns} />)}
+                    {columns.map(item => <DashboardKanbanColumns key={item.name} posts={currentPosts.filter(card => card.status === item.name && item.name)} column={item} options={sortColumns} />)}
                 </div>
             </div>
-
         </>
     )
 }

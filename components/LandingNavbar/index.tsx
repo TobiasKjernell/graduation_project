@@ -10,7 +10,7 @@ const LandingNavbar = () => {
         <header className='p-5 flex items-center shadow-2xl justify-center gap-5 lg:gap-0 lg:justify-between'>
             <div className='flex gap-5 items-center'>
                 <div className='w-20 h-20 relative'>
-                    <Image src={'/psplogo.png'} alt='psp-logo' fill className='object-fill' />
+                    <Image src={'/psplogo.png'} alt='psp-logo' fill className='object-fill' />      
                 </div>
                 <h1 className='hidden lg:block text-4xl psp-text-asi'>Polarbear Sandbox Production</h1>
             </div>

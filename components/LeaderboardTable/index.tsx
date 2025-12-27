@@ -23,7 +23,7 @@ export const columns: ColumnDef<IFakeLeaderboard>[] = [
                 <AvatarFallback>PSP</AvatarFallback>
             </Avatar>   
         }
-    },  
+    },      
     {
         accessorKey: "name",
         header: "Name",
